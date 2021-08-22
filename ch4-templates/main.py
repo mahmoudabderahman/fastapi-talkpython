@@ -5,7 +5,7 @@ from fastapi_chameleon import template
 from views import home
 from views import account
 from views import packages
-
+from fastapi.staticfiles import StaticFiles
 
 app = fastapi.FastAPI()
 
@@ -21,6 +21,7 @@ def configure_templates():
     fastapi_chameleon.global_init('templates')
 
 def configure_routes():
+    app.mount('/static', StaticFiles(directory='static'), name='static')
     app.include_router(home.router)
     app.include_router(account.router)
     app.include_router(packages.router)

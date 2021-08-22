@@ -4,12 +4,13 @@ import fastapi
 router = fastapi.APIRouter()
 
 @router.get('/')
-@template(template_file='index.html')
+@template()
 def index(user:str='anon'):
     return {
         'user_name' : user
     }
 
 @router.get('/about')
+@template()
 def about():
     return {}
